@@ -3,6 +3,7 @@ fetch('http://127.0.0.1:5500/titanic-passengers.json')
     .then(json => {
         handleData(json)
         createPassengerGraph(json)
+        createFaresBarGraph(json)
     })
     .catch(err => console.log(err.message))
 
@@ -17,7 +18,6 @@ let deadClassCounts;
 let numQueenstownPassengers;
 let numPeopleWithNanny;
 let ages;
-let numAgesfares;
 let numSiblings;
 let survivalRate;
 let numAges;
@@ -240,4 +240,60 @@ function createPassengerGraph(data) {
     })
 }
 
-function
+function createFaresBarGraph(data) {
+    const container = document.getElementById('bar-graph')
+    container.style.width = "100 vw"
+    container.style.display = 'flex'
+    container.style.flexDirection = 'row'
+    container.style.alignItems = 'flex-end'
+    // data.forEach(passenger => {
+    //     const el = document.createElement('div')
+    //     el.style.width = passenger.fields.fare
+    //     el.style.height = "18px"
+    //     el.style.border = "1px solid black"
+    //     el.innerText = `${Math.round(passenger.fields.fare)}`
+    //     container.appendChild(el)
+    // })
+
+    const fields = data.map(passenger => passenger.fields)
+    seen = {}
+    
+    fields.forEach(({age}) => {
+        age = Math.ceil(parseInt(age))
+        if (isNaN(age)) {
+            return
+        }
+        if (age in seen) {
+            seen[age] += 1
+        } else {
+            seen[age] = 1
+        }
+    })
+    
+    const keys = Object.keys(seen).map((n) => parseInt(n))
+    keys.sort((a, b) => a > b)
+    console.log(keys)
+    keys.forEach(key => {
+        const el = document.createElement('div')
+        el.style.width = `20px`
+        el.style.height = seen[key]
+        el.style.border = "1px solid black"
+        el.style.backgroundColor = "lightblue"
+        container.appendChild(el)
+    })
+
+    const labels = document.getElementById('labels')
+    labels.style.width = "100 vw"
+    labels.style.display = 'flex'
+    labels.style.flexDirection = 'row'
+    labels.style.alignItems = 'flex-end'
+    keys.forEach(key => {
+        const el = document.createElement('div')
+        el.style.width = `20px`
+        el.style.height = "20px"
+        // el.style.border = "1px solid black"
+        el.style.textAlign = "center"
+        el.innerText = `${key}`
+        labels.appendChild(el)
+    })
+}
