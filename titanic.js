@@ -1,6 +1,9 @@
 fetch('http://127.0.0.1:5500/titanic-passengers.json')
     .then(res => res.json())
-    .then(json => handleData(json))
+    .then(json => {
+        handleData(json)
+        createPassengerGraph(json)
+    })
     .catch(err => console.log(err.message))
 
 let firstPassenger;
@@ -18,7 +21,6 @@ let numAgesfares;
 let numSiblings;
 let survivalRate;
 let numAges;
-
 
 function handleData(json) {
     const fields = json.map(passenger => passenger.fields)
@@ -131,7 +133,7 @@ function handleData(json) {
     })
     numAges = seen.size
 
-    document.getElementById("content").innerHTML = 
+    document.getElementById("content1").innerHTML = 
         `
         <style>
         table, th, td {
@@ -213,3 +215,29 @@ function handleData(json) {
         `
 
 }
+
+
+function createPassengerGraph(data) {
+    const container = document.getElementById('content2')
+    container.style.display = 'flex'
+    container.style.flexDirection = 'row'
+    container.style.flexWrap = 'wrap'
+    data.forEach(passenger => {
+        const el = document.createElement('div')
+        el.style.height = "30px"
+        el.style.width = "30px"
+        el.style.margin = "1px"
+        // Set the color of each passenger to red if they survived and black if they did not
+        el.style.backgroundColor = "black"
+        if (passenger.fields.survived === "Yes") {
+            el.style.backgroundColor = "red"
+        }
+        // Set the border radius for each passenger based on gender (sex). Use 0 for males and 50% for females.
+        if (passenger.fields.sex === "female") {
+            el.style.borderRadius = "50%"
+        }
+        container.appendChild(el)
+    })
+}
+
+function
