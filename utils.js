@@ -13,6 +13,7 @@
 // Create functions for compound shapes, or any other shapes you may use
 // Have your functions take in a position parameter
 // Have your functions take in a stroke parameter
+
 console.log("UTILS SETUP");
 
 // Input: data object containing "label": number, total number,
@@ -37,7 +38,6 @@ function createBarGraph(data, total, id) {
   labelsDiv.style.alignItems = "flex-end";
   container.appendChild(labelsDiv);
 
-  // {"male" : 32, "female" : 12, "other": 2}
   Object.keys(data).forEach(key => {
     console.log(key, data[key]);
     const el = document.createElement("div");
@@ -90,7 +90,6 @@ function createSortedBarGraph(data, id) {
   labelsDiv.style.alignItems = "flex-end";
   container.appendChild(labelsDiv);
 
-  // Ex. {"male" : 32, "female" : 12, "other": 2}
   keys.forEach(key => {
     const el = document.createElement("div");
     el.style.width = `20px`;
@@ -109,4 +108,37 @@ function createSortedBarGraph(data, id) {
     el_label.innerText = `${key}`;
     labelsDiv.appendChild(el_label);
   });
+}
+
+function createDataTable(data, id) {
+    const container = document.getElementById(id);
+
+    const table = document.createElement('table')
+    table.style.border = "1px solid black"
+    table.style.borderCollapse = "collapse"
+
+    Object.keys(data).forEach(key => { 
+        // create elements
+        const tr = document.createElement('tr')
+        const th = document.createElement('th')
+        const td = document.createElement('td')
+        // style elements
+        th.style.border = "1px solid black"
+        th.style.borderCollapse = "collapse"
+        th.style.padding = "20px"
+        th.style.textAlign = "left"
+        td.style.border = "1px solid black"
+        td.style.borderCollapse = "collapse"
+        td.style.padding = "20px"
+        td.style.textAlign = "left"
+        // inject content
+        th.innerText = key
+        td.innerText = data[key]
+        // append
+        tr.appendChild(th)
+        tr.appendChild(td)
+        table.appendChild(tr)
+    })
+
+    container.appendChild(table)
 }

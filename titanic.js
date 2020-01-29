@@ -138,86 +138,24 @@ function handleData(json) {
     seen.add(age);
   });
   numAges = seen.size;
-
-  document.getElementById("content1").innerHTML = `
-        <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 20px;
-            text-align: left;    
-        }
-        </style>
-
-        <table>
-        <tr>
-            <th>Get data from the first passenger in the list:</th>
-            <td>${JSON.stringify(firstPassenger)}</td>
-        </tr>
-        <tr>
-            <th>Get data from the first passenger in the list:</th>
-            <td>${JSON.stringify(firstPassenger)}</td>
-        </tr>
-        <tr>
-            <th>How many total passengers?:</th>
-            <td>${totalPassengers}</td>
-        </tr>
-        <tr>
-            <th>What's the length of the list?:</th>
-            <td>${listLen}</td>
-        </tr>
-        <tr>
-            <th>How many survived?:</th>
-            <td>${survived}</td>
-        </tr>
-        <tr>
-            <th>How many died?:</th>
-            <td>${dead}</td>
-        </tr>
-        <tr>
-            <th>How many passengers in each class?:</th>
-            <td>${passengerClasses}</td>
-        </tr>
-        <tr>
-            <th>How many passengers in each class?:</th>
-            <td>${passengerClassSizes}</td>
-        </tr>
-        <tr>
-            <th>How many died in each class?:</th>
-            <td>${deadClassCounts}</td>
-        </tr>
-        <tr>
-            <th>How many passengers embarked from Queenstown?:</th>
-            <td>${numQueenstownPassengers}</td>
-        </tr>
-        <tr>
-            <th>How many people traveled with a nanny?:</th>
-            <td>${numPeopleWithNanny}</td>
-        </tr>
-        <tr>
-            <th>Find the min and max-age:</th>
-            <td>${ages}</td>
-        </tr>
-        <tr>
-            <th>Find min and max fare:</th>
-            <td>${fares}</td>
-        </tr>
-        <tr>
-            <th>How many siblings were there?:</th>
-            <td>${numSiblings}</td>
-        </tr>
-        <tr>
-            <th>What is the survival rate of siblings vs only children?:</th>
-            <td>${survivalRate}</td>
-        </tr>
-        <tr>
-            <th>How many ages were estimated?:</th>
-            <td>${numAges}</td>
-        </tr>
-        </table>
-        `;
+  createDataTable({
+    "Get data from the first passenger in the list:": JSON.stringify(firstPassenger),
+    "Get data from the first passenger in the list:": JSON.stringify(firstPassenger),
+    "How many total passengers?:": totalPassengers,
+    "What's the length of the list?:": listLen,
+    "How many survived?:": survived,
+    "How many died?:" : dead,
+    "How many passenger classes?:": passengerClasses,
+    "How many passengers in each class?:": passengerClassSizes,
+    "How many died in each class?:": deadClassCounts,
+    "How many passengers embarked from Queenstown?:": numQueenstownPassengers,
+    "How many people traveled with a nanny?:": numPeopleWithNanny, 
+    "Find the min and max-age:": ages,
+    "Find min and max fare:": fares,
+    "How many siblings were there?:": numSiblings,
+    "What is the survival rate of siblings vs only children?": survivalRate, 
+    "How many ages were estimated?:": numAges,
+  }, "content1")
 }
 
 function createPassengerGraph(data) {
