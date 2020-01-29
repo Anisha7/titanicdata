@@ -1,12 +1,11 @@
-// for local testing: http://127.0.0.1:5500/titanic-passengers.json
-// for github: https://anisha7.github.io/titanicdata/titanic-passengers.json
 fetch("https://anisha7.github.io/titanicdata/titanic-passengers.json")
   .then(res => res.json())
   .then(json => {
     handleData(json);
     createPassengerGraph(json);
     createAgeBarGraph(json);
-    createGenderBarGraph(json);
+    // createGenderBarGraph(json);
+    createGenderBarGraphRefactored(json);
   })
   .catch(err => console.log(err.message));
 
@@ -328,16 +327,7 @@ function createAgeBarGraph(data) {
   });
 }
 
-function createGenderBarGraph(data) {
-  const container = document.getElementById("bar-graph2");
-  container.style.width = "400px";
-  container.style.height = "400px";
-  container.style.border = "3px solid #515ada";
-  container.style.display = "flex";
-  container.style.flexDirection = "row";
-  container.style.alignItems = "flex-end";
-  container.style.backgroundColor = "#3c3c3c"
-
+function createGenderBarGraphRefactored(data) {
   const fields = data.map(passenger => passenger.fields);
   let numMales = 0;
   let numFems = 0;
@@ -353,39 +343,9 @@ function createGenderBarGraph(data) {
     }
   });
 
-  [numMales, numFems, numOther].forEach(n => {
-    const el = document.createElement("div");
-    el.style.width = `100px`;
-    el.style.height = `${(n / totalPassengers) * 400}px`;
-    el.style.border = "1px solid #515ada";
-    el.style.marginLeft = "20px";
-    el.style.borderTopLeftRadius = "40%";
-    el.style.borderTopRightRadius = "40%";
-    // text
-    el.style.fontSize = "16px";
-    el.style.textAlign = "center";
-    el.innerText = `${n}`;
-    el.style.paddingBottom = "20px";
-    // colors
-    el.style.background = "linear-gradient(135deg, #efd5ff 0%, #515ada 100%)"
-    // el.style.fontColor = ""
-    container.appendChild(el);
-  });
-
-  const labels = document.getElementById("labels2");
-  labels.style.width = "400px";
-  labels.style.display = "flex";
-  labels.style.flexDirection = "row";
-  labels.style.alignItems = "flex-end";
-
-  ["Male", "Female", "Other"].forEach(n => {
-    const el = document.createElement("div");
-    el.style.width = `100px`;
-    el.style.height = "20px";
-    el.style.marginLeft = "20px";
-    el.style.textAlign = "center";
-    el.style.fontSize = "16px";
-    el.innerText = n;
-    labels.appendChild(el);
-  });
+  createBarGraph({
+    "Male": numMales,
+    "Female": numFems,
+    "Other": numOther
+  }, totalPassengers, "bar-graph2")
 }
