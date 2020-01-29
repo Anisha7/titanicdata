@@ -225,7 +225,33 @@ function createPassengerGraph(data) {
   container.style.display = "flex";
   container.style.flexDirection = "row";
   container.style.flexWrap = "wrap";
-  data.forEach(passenger => {
+  console.log(data.sort((a, b) => a.fields.sex - b.fields.sex))
+  // helper to sort by gender and survived
+  const numGenderSurvived = (a) => {
+    let n = a.fields.sex === "female" ? 0 : 2
+    return a.fields.survived === "No" ? n + 1 : n
+  };
+
+  // sort by embarked
+  const sortByEmbarked = (a, b) => {
+    const x = a.fields.embarked
+    const y = b.fields.embarked
+    if (x === undefined || y === undefined) {
+      return 0
+    }
+
+    if (x < y) {
+      return -1;
+    }
+    if (x > y) {
+      return 1;
+    }
+  
+    // names must be equal
+    return 0;
+  }
+  
+  data.sort(sortByEmbarked).sort((a, b) => numGenderSurvived(a) - numGenderSurvived(b)).forEach(passenger => {
     const el = document.createElement("div");
     el.style.height = "30px";
     el.style.width = "30px";
@@ -275,7 +301,6 @@ function createAgeBarGraph(data) {
 
   const keys = Object.keys(seen).map(n => parseInt(n));
   keys.sort((a, b) => a > b);
-  console.log(keys);
   keys.forEach(key => {
     const el = document.createElement("div");
     el.style.width = `20px`;
