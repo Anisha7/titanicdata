@@ -4,8 +4,7 @@ fetch("https://anisha7.github.io/titanicdata/titanic-passengers.json")
     handleData(json);
     createPassengerGraph(json);
     createAgeBarGraph(json);
-    // createGenderBarGraph(json);
-    createGenderBarGraphRefactored(json);
+    createGenderBarGraph(json);
   })
   .catch(err => console.log(err.message));
 
@@ -271,19 +270,6 @@ function createPassengerGraph(data) {
 }
 
 function createAgeBarGraph(data) {
-  const container = document.getElementById("bar-graph");
-  container.style.width = "100 vw";
-  container.style.display = "flex";
-  container.style.flexDirection = "row";
-  container.style.alignItems = "flex-end";
-  // data.forEach(passenger => {
-  //     const el = document.createElement('div')
-  //     el.style.width = passenger.fields.fare
-  //     el.style.height = "18px"
-  //     el.style.border = "1px solid black"
-  //     el.innerText = `${Math.round(passenger.fields.fare)}`
-  //     container.appendChild(el)
-  // })
 
   const fields = data.map(passenger => passenger.fields);
   seen = {};
@@ -300,34 +286,10 @@ function createAgeBarGraph(data) {
     }
   });
 
-  const keys = Object.keys(seen).map(n => parseInt(n));
-  keys.sort((a, b) => a > b);
-  keys.forEach(key => {
-    const el = document.createElement("div");
-    el.style.width = `20px`;
-    el.style.height = seen[key];
-    el.style.border = "1px solid black";
-    el.style.backgroundColor = "lightblue";
-    container.appendChild(el);
-  });
-
-  const labels = document.getElementById("labels");
-  labels.style.width = "100 vw";
-  labels.style.display = "flex";
-  labels.style.flexDirection = "row";
-  labels.style.alignItems = "flex-end";
-  keys.forEach(key => {
-    const el = document.createElement("div");
-    el.style.width = `20px`;
-    el.style.height = "20px";
-    // el.style.border = "1px solid black"
-    el.style.textAlign = "center";
-    el.innerText = `${key}`;
-    labels.appendChild(el);
-  });
+  createSortedBarGraph(seen, 'bar-graph')
 }
 
-function createGenderBarGraphRefactored(data) {
+function createGenderBarGraph(data) {
   const fields = data.map(passenger => passenger.fields);
   let numMales = 0;
   let numFems = 0;

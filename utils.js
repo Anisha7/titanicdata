@@ -13,7 +13,7 @@
 // Create functions for compound shapes, or any other shapes you may use
 // Have your functions take in a position parameter
 // Have your functions take in a stroke parameter
-console.log("UTILS SETUP")
+console.log("UTILS SETUP");
 
 // Input: data object containing "label": number, total number,
 // and id for html div to append graph to
@@ -65,6 +65,48 @@ function createBarGraph(data, total, id) {
     el_label.style.textAlign = "center";
     el_label.style.fontSize = "16px";
     el_label.innerText = key;
+    labelsDiv.appendChild(el_label);
+  });
+}
+
+// keys in data have to numbers
+function createSortedBarGraph(data, id) {
+  const keys = Object.keys(data).map(n => parseInt(n));
+  keys.sort((a, b) => a > b);
+
+  const container = document.getElementById(id);
+
+  const barsDiv = document.createElement("div");
+  barsDiv.style.width = "100 vw";
+  barsDiv.style.display = "flex";
+  barsDiv.style.flexDirection = "row";
+  barsDiv.style.alignItems = "flex-end";
+  container.appendChild(barsDiv);
+
+  const labelsDiv = document.createElement("div");
+  labelsDiv.style.width = "100 vw";
+  labelsDiv.style.display = "flex";
+  labelsDiv.style.flexDirection = "row";
+  labelsDiv.style.alignItems = "flex-end";
+  container.appendChild(labelsDiv);
+
+  // Ex. {"male" : 32, "female" : 12, "other": 2}
+  keys.forEach(key => {
+    const el = document.createElement("div");
+    el.style.width = `20px`;
+    el.style.height = seen[key];
+    el.style.border = "1px solid black";
+    el.style.backgroundColor = "lightblue";
+    // append to graph
+    barsDiv.appendChild(el);
+
+    // labels
+    const el_label = document.createElement("div");
+    el_label.style.width = `20px`;
+    el_label.style.height = "20px";
+    // el.style.border = "1px solid black"
+    el_label.style.textAlign = "center";
+    el_label.innerText = `${key}`;
     labelsDiv.appendChild(el_label);
   });
 }
