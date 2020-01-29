@@ -1,4 +1,6 @@
-fetch("http://127.0.0.1:5500/titanic-passengers.json")
+// for local testing: http://127.0.0.1:5500/titanic-passengers.json
+// for github: https://anisha7.github.io/titanicdata/titanic-passengers.json
+fetch("https://anisha7.github.io/titanicdata/titanic-passengers.json")
   .then(res => res.json())
   .then(json => {
     handleData(json);
