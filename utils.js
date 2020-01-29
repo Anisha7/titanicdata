@@ -29,14 +29,12 @@ function createBarGraph(data, total, id) {
   barsDiv.style.flexDirection = "row";
   barsDiv.style.alignItems = "flex-end";
   barsDiv.style.backgroundColor = "#3c3c3c";
-  container.appendChild(barsDiv);
 
   const labelsDiv = document.createElement("div");
   labelsDiv.style.width = "400px";
   labelsDiv.style.display = "flex";
   labelsDiv.style.flexDirection = "row";
   labelsDiv.style.alignItems = "flex-end";
-  container.appendChild(labelsDiv);
 
   Object.keys(data).forEach(key => {
     console.log(key, data[key]);
@@ -67,9 +65,12 @@ function createBarGraph(data, total, id) {
     el_label.innerText = key;
     labelsDiv.appendChild(el_label);
   });
+
+  container.appendChild(barsDiv);
+  container.appendChild(labelsDiv);
 }
 
-// keys in data have to numbers
+// keys in data have to be numbers
 function createSortedBarGraph(data, id) {
   const keys = Object.keys(data).map(n => parseInt(n));
   keys.sort((a, b) => a > b);

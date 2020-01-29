@@ -5,6 +5,8 @@ fetch("https://anisha7.github.io/titanicdata/titanic-passengers.json")
     createPassengerGraph(json);
     createAgeBarGraph(json);
     createGenderBarGraph(json);
+    survivalInEachClassFemale(json);
+    survivalInEachClassMale(json)
   })
   .catch(err => console.log(err.message));
 
@@ -59,7 +61,7 @@ function handleData(json) {
     }
   });
 
-  passengerClasses = classCounts.size; // 3
+  passengerClasses = 3 //classCounts.size; // 3
 
   // How many passengers in each class?
   passengerClassSizes = JSON.stringify(classCounts);
@@ -195,9 +197,9 @@ function createPassengerGraph(data) {
     el.style.width = "30px";
     el.style.margin = "1px";
     // Set the color of each passenger to red if they survived and black if they did not
-    el.style.backgroundColor = "black";
+    el.style.backgroundColor = "#8D8798";
     if (passenger.fields.survived === "Yes") {
-      el.style.backgroundColor = "red";
+      el.style.backgroundColor = "#C8ADCC";
     }
     // Set the border radius for each passenger based on gender (sex). Use 0 for males and 50% for females.
     if (passenger.fields.sex === "female") {
@@ -224,7 +226,7 @@ function createAgeBarGraph(data) {
     }
   });
 
-  createSortedBarGraph(seen, 'bar-graph')
+  createSortedBarGraph(seen, 'content3')
 }
 
 function createGenderBarGraph(data) {
@@ -247,5 +249,37 @@ function createGenderBarGraph(data) {
     "Male": numMales,
     "Female": numFems,
     "Other": numOther
-  }, totalPassengers, "bar-graph2")
+  }, totalPassengers, "content4")
+}
+
+function survivalInEachClassFemale(data) {
+  const fields = data.map(passenger => passenger.fields).filter(({sex}) => sex === "female");
+  const totalFemales = fields.length
+  const survivedFemales = fields.filter(({survived}) => survived === "Yes")
+  let newData = [0, 0, 0] // pclass 1, 2, 3
+  survivedFemales.forEach(fem => {
+    newData[fem.pclass - 1] += 1
+  })
+
+  createBarGraph({
+    "1": newData[0],
+    "2": newData[1],
+    "3": newData[2]
+  }, totalFemales, "content5")
+}
+
+function survivalInEachClassMale(data) {
+  const fields = data.map(passenger => passenger.fields).filter(({sex}) => sex === "male");
+  const totalMales = fields.length
+  const survivedFemales = fields.filter(({survived}) => survived === "Yes")
+  let newData = [0, 0, 0] // pclass 1, 2, 3
+  survivedFemales.forEach(fem => {
+    newData[fem.pclass - 1] += 1
+  })
+
+  createBarGraph({
+    "1": newData[0],
+    "2": newData[1],
+    "3": newData[2]
+  }, totalMales, "content6")
 }
