@@ -43,8 +43,8 @@ function createBarGraph(data, total, id) {
     el.style.height = `${(data[key] / total) * 400}px`;
     el.style.border = "1px solid #515ada";
     el.style.marginLeft = "20px";
-    el.style.borderTopLeftRadius = "40%";
-    el.style.borderTopRightRadius = "40%";
+    el.style.borderTopLeftRadius = "25px";
+    el.style.borderTopRightRadius = "25px";
     // text
     el.style.fontSize = "16px";
     el.style.textAlign = "center";
@@ -60,8 +60,10 @@ function createBarGraph(data, total, id) {
     el_label.style.width = `100px`;
     el_label.style.height = "20px";
     el_label.style.marginLeft = "20px";
+    el_label.style.marginTop = "10px";
     el_label.style.textAlign = "center";
     el_label.style.fontSize = "16px";
+    el_label.style.fontWeight = "bold"
     el_label.innerText = key;
     labelsDiv.appendChild(el_label);
   });
