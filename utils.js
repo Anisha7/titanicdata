@@ -94,7 +94,7 @@ function createSortedBarGraph(data, id) {
   keys.forEach(key => {
     const el = document.createElement("div");
     el.style.width = `20px`;
-    el.style.height = seen[key];
+    el.style.height = `${seen[key]}px`;
     el.style.border = "1px solid black";
     el.style.backgroundColor = "lightblue";
     // append to graph

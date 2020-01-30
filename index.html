@@ -1,36 +1,65 @@
-<body style="text-align: center">
-    <h1>Titanic Data Analysis</h1>
-    <div style="display: flex; flex-direction: column-reverse; align-items: center; ">
+<!DOCTYPE html>
+<html>
 
-        <div id="content1"></div>
-        <h2>Data visualization assignment 1</h2>
-        
-        <div id="content2"></div>
-        <h3>Purple/gray refers to survived/dead passengers and circle/square refers to female/male passengers respectively</h3>
-        <h2>Data visualization assignment 2 part 1</h2>
-        
-        
-        <div id="content3">
-        </div>
-        <h3>Number of people (y) from each age (x)</h3>
-        <h2>Data visualization assignment 2 part 2</h2>
-        
-        <div id="content4">
-        </div>
-        <h3>Gender difference in titanic</h3>
-        <h2>Data visualization 2</h2>
+    <head>
+        <meta charset="utf-8" />
+        <title>Titanic Data Analysis</title>
+        <style>
+            h1 {
+                font-size: 24px;
+                font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            }
 
-        <div id="content5">
-        </div>
-        <h2>How many females survived in each class?</h2>
+            .flex {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
 
-        <div id="content6">
-        </div>
-        <h2>How many males survived in each class?</h2>
+            .flex > div {
+                margin: 10px;
+            }
+        </style>
+    </head>
 
-        
-        
-    </div>
-    <script src="./utils.js"></script>
-    <script src="./titanic.js"> </script>
-</body>
+    <body style="text-align: center">
+        <h1>Titanic Data Analysis</h1>
+        <div style="display: flex; flex-direction: column-reverse; align-items: center; ">
+
+            <div id="content1"></div>
+            <h2>Data visualization assignment 1</h2>
+
+            <div id="content2"></div>
+            <h3>Purple/gray refers to survived/dead passengers and circle/square refers to female/male passengers
+                respectively</h3>
+            <h2>Data visualization assignment 2 part 1</h2>
+
+
+            <div id="content3"></div>
+            <h3>Number of people (y) from each age (x)</h3>
+            <h2>Data visualization assignment 2 part 2</h2>
+
+            <div class="flex">
+                <div>
+                    <h2>Gender difference in titanic</h2>
+                    <div id="content4"></div>
+                </div>
+                <div>
+                    <h2>How many females survived in each class?</h2>
+                    <div id="content5"></div>
+                </div>
+                <div>
+                    <h2>How many males survived in each class?</h2>
+                    <div id="content6"></div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <script src="./utils.js"></script>
+        <script src="./titanic.js"> </script>
+    </body>
+
+</html>
