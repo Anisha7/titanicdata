@@ -24,11 +24,12 @@ function createBarGraph(data, total, id) {
   const barsDiv = document.createElement("div");
   barsDiv.style.width = "400px";
   barsDiv.style.height = "400px";
-  barsDiv.style.border = "3px solid #515ada";
+  barsDiv.style.borderLeft = "1px solid #515ada";
+  barsDiv.style.borderBottom = "1px solid #515ada";
   barsDiv.style.display = "flex";
   barsDiv.style.flexDirection = "row";
   barsDiv.style.alignItems = "flex-end";
-  barsDiv.style.backgroundColor = "#3c3c3c";
+//   barsDiv.style.backgroundColor = "#3c3c3c";
 
   const labelsDiv = document.createElement("div");
   labelsDiv.style.width = "400px";
@@ -63,7 +64,7 @@ function createBarGraph(data, total, id) {
     el_label.style.marginTop = "10px";
     el_label.style.textAlign = "center";
     el_label.style.fontSize = "16px";
-    el_label.style.fontWeight = "bold"
+    el_label.style.fontWeight = "bold";
     el_label.innerText = key;
     labelsDiv.appendChild(el_label);
   });
@@ -108,7 +109,10 @@ function createSortedBarGraph(data, id) {
     el_label.style.height = "20px";
     // el.style.border = "1px solid black"
     el_label.style.textAlign = "center";
-    el_label.innerText = `${key}`;
+    if (key === 0 || key === 80) {
+        el_label.innerText = `age ${key}`;
+    }
+
     labelsDiv.appendChild(el_label);
   });
 }
