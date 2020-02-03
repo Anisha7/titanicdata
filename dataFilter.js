@@ -22,18 +22,31 @@ const buttonGender = document.getElementById("button-gender");
 const buttonEmbarked = document.getElementById("button-embarked");
 const buttonSurvived = document.getElementById("button-survived");
 
+function selectButton(e, state) {
+    if (state) {
+        e.target.style.backgroundColor = 'black'
+        e.target.style.color = 'white'
+      } else {
+        e.target.style.backgroundColor = 'white'
+        e.target.style.color = 'black'
+      }
+  }
+
 buttonGender.addEventListener("click", e => {
   showGender = !showGender;
+  selectButton(e, showGender)
   displayByGender();
 });
 
 buttonEmbarked.addEventListener("click", e => {
   showEmbarked = !showEmbarked;
+  selectButton(e, showEmbarked)
   displayByEmbarked();
 });
 
 buttonSurvived.addEventListener("click", e => {
   showSurvived = !showSurvived;
+  selectButton(e, showSurvived)
   displayBySurvived();
 });
 
