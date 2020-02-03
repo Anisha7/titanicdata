@@ -1,7 +1,7 @@
 fetch("https://anisha7.github.io/titanicdata/titanic-passengers.json")
   .then(res => res.json())
   .then(json => {
-    handleData(json);
+    handleDataTable(json);
     createPassengerGraph(json);
     createAgeBarGraph(json);
     createGenderBarGraph(json);
@@ -25,7 +25,7 @@ let numSiblings;
 let survivalRate;
 let numAges;
 
-function handleData(json) {
+function handleDataTable(json) {
   const fields = json.map(passenger => passenger.fields);
 
   // Get data from the first passenger in the list

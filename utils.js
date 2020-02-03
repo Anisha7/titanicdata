@@ -118,6 +118,7 @@ function createSortedBarGraph(data, id) {
 }
 
 function createDataTable(data, id) {
+    console.log("data table")
     const container = document.getElementById(id);
 
     const table = document.createElement('table')
