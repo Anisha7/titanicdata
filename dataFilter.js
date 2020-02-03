@@ -10,10 +10,8 @@ console.log("HERE DATA FILTER");
 const data = getData().then(d => {
   handleData(d);
 });
-// const fields = data.map(passenger => passenger.fields);
 
-// listen events for buttons
-
+// ********** FILTERING **********
 let showGender = false;
 let showEmbarked = false;
 let showSurvived = false;
@@ -104,4 +102,94 @@ function displayBySurvived() {
     const borderRadius = obj.survived === "No" ? "0px" : "25px";
     el.style.borderRadius = showSurvived ? borderRadius : "0px";
   });
+}
+
+function redraw() {
+    displayByGender()
+    displayByEmbarked()
+    displayBySurvived() 
+}
+
+// ********** SORTING **********
+let sortGender = false;
+let sortEmbarked = false;
+let sortSurvived = false;
+let sortFare = false;
+let sortId = false;
+
+const buttonSortGender = document.getElementById("button-sort-gender");
+const buttonSortEmbarked = document.getElementById("button-sort-embarked");
+const buttonSortSurvived = document.getElementById("button-sort-survived");
+const buttonSortFare = document.getElementById("button-sort-fare");
+const buttonSortId = document.getElementById("button-sort-id");
+
+buttonSortGender.addEventListener("click", e => {
+    sortGender = !sortGender;
+    selectButton(e, sortGender)
+    sortByGender();
+});
+
+buttonSortEmbarked.addEventListener("click", e => {
+    sortEmbarked = !sortEmbarked;
+    selectButton(e, sortEmbarked)
+    sortByEmbarked();
+});
+
+buttonSortSurvived.addEventListener("click", e => {
+    sortSurvived = !sortSurvived;
+    selectButton(e, sortSurvived)
+    sortbySurvived();
+});
+
+buttonSortFare.addEventListener("click", e => {
+    sortFare = !sortFare;
+    selectButton(e, sortFare)
+    sortbyFare();
+});
+
+buttonSortId.addEventListener("click", e => {
+    sortId = !sortId;
+    selectButton(e, sortId)
+    sortbyId();
+});
+
+function sortByGender() {
+    passengerData.sort((a, b) => a.sex === "male" ? -1 : 1)
+    redraw()
+}
+
+function sortByEmbarked() {
+    passengerData.sort((a, b) => {
+        const x = a.embarked
+        const y = b.embarked
+        if (x === undefined || y === undefined) {
+          return 0
+        }
+    
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+      
+        // names must be equal
+        return 0;
+      })
+    redraw()
+}
+
+function sortbySurvived() {
+    passengerData.sort((a, b) => a.survived === "Yes" ? -1 : 1)
+    redraw()
+}
+
+function sortbyFare() {
+    passengerData.sort((a, b) => b.fare - a.fare)
+    redraw()
+}
+
+function sortbyId() {
+    passengerData.sort((a, b) => b.passengerid - a.passengerid)
+    redraw()
 }

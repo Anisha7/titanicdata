@@ -165,7 +165,7 @@ function createPassengerGraph(data) {
   container.style.display = "flex";
   container.style.flexDirection = "row";
   container.style.flexWrap = "wrap";
-  console.log(data.sort((a, b) => a.fields.sex - b.fields.sex))
+  // console.log(data.sort((a, b) => a.fields.sex - b.fields.sex))
   // helper to sort by gender and survived
   const numGenderSurvived = (a) => {
     let n = a.fields.sex === "female" ? 0 : 2
