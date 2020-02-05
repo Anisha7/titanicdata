@@ -10,6 +10,7 @@ fetch("https://anisha7.github.io/titanicdata/titanic-passengers.json")
   })
   .catch(err => console.log(err.message));
 
+// Parsed data variable initialization
 let firstPassenger;
 let totalPassengers;
 let survived;
@@ -25,6 +26,7 @@ let numSiblings;
 let survivalRate;
 let numAges;
 
+// Initializes above parsed data variables and displays a data table
 function handleDataTable(json) {
   const fields = json.map(passenger => passenger.fields);
 
@@ -160,6 +162,7 @@ function handleDataTable(json) {
   }, "content1")
 }
 
+// Visualizes survival and deaths of males vs females
 function createPassengerGraph(data) {
   const container = document.getElementById("content2");
   container.style.display = "flex";
@@ -209,6 +212,7 @@ function createPassengerGraph(data) {
   });
 }
 
+// Visualizes the age dispersment in the titanic
 function createAgeBarGraph(data) {
 
   const fields = data.map(passenger => passenger.fields);
@@ -229,6 +233,7 @@ function createAgeBarGraph(data) {
   createSortedBarGraph(seen, 'content3')
 }
 
+// Visualizes a gender count for passengers
 function createGenderBarGraph(data) {
   const fields = data.map(passenger => passenger.fields);
   let numMales = 0;
@@ -252,6 +257,7 @@ function createGenderBarGraph(data) {
   }, totalPassengers, "content4")
 }
 
+// Visualizes female survival in each class
 function survivalInEachClassFemale(data) {
   const fields = data.map(passenger => passenger.fields).filter(({sex}) => sex === "female");
   const totalFemales = fields.length
@@ -268,6 +274,7 @@ function survivalInEachClassFemale(data) {
   }, totalFemales, "content5")
 }
 
+// Visualizes male survival in each class
 function survivalInEachClassMale(data) {
   const fields = data.map(passenger => passenger.fields).filter(({sex}) => sex === "male");
   const totalMales = fields.length
