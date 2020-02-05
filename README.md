@@ -24,22 +24,22 @@ You could reuse my implementation below if you like any of the visualizations.
 utils.js consists of helper functions that create sorted and unsorted bar graphs and a data table based on any data you provide. 
 
 ```
-// This takes in a data of key, value pairs, where the keys are the row category and value is the row value. This creates a 2 column table.
-// This also takes in an id, which is the id of the html div you want to append the graph to.
+
 createDataTable(data, id)
 ```
+This function takes in a data paramater which are key, value pairs. The keys are the row category and value is the row value. This creates a 2 column table.
+This also takes in an id, which is the id of the html div you want to append the graph to.
 This function can be customized to take in a key, value pair where value is an array of values. This customization would allow you to make a n-column graph.
 
 ```
-// This takes in a data object containing "label": number, a total number,
-// and id for html div to append graph to
 createBarGraph(data, total, id)
 ```
+This function takes in a data object containing "label": number, a total number, and id for html div to append graph to
 
 ```
-// This is similar to above but the keys in data have to be numbers for the graph to sort by.
 function createSortedBarGraph(data, id)
 ```
+This is similar to above but the keys in data have to be numbers for the graph to sort by.
 
 ## Progress evaluation
 | Expectation | Doe not meet | Meets | Exceeds |
