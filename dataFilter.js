@@ -1,3 +1,9 @@
+/*
+This file consists of the javascript code needed to build the data 
+sorting visualization. This is the first graph on the live version, 
+where you can sort and filter using buttons.
+*/
+
 async function getData() {
   const res = await fetch(
     "https://anisha7.github.io/titanicdata/titanic-passengers.json"
@@ -6,30 +12,35 @@ async function getData() {
   return json;
 }
 
-console.log("HERE DATA FILTER");
+// data setup
 const data = getData().then(d => {
   handleData(d);
 });
 
+// graph data storage
+const elements = [];
+const passengerData = [];
+
+// graph div elements
+const container = document.getElementById("content7");
+container.style.display = "flex";
+container.style.flexDirection = "row";
+container.style.flexWrap = "wrap";
+const overlay = document.getElementById('content7-overlay')
+
 // ********** FILTERING **********
+// graph display style controllers 
 let showGender = false;
 let showEmbarked = false;
 let showSurvived = false;
 
+
+// filtering button elements
 const buttonGender = document.getElementById("button-gender");
 const buttonEmbarked = document.getElementById("button-embarked");
 const buttonSurvived = document.getElementById("button-survived");
 
-function selectButton(e, state) {
-  if (state) {
-    e.target.style.backgroundColor = "black";
-    e.target.style.color = "white";
-  } else {
-    e.target.style.backgroundColor = "white";
-    e.target.style.color = "black";
-  }
-}
-
+// event listeners for filtering buttons
 buttonGender.addEventListener("click", e => {
   showGender = !showGender;
   selectButton(e, showGender);
@@ -48,15 +59,10 @@ buttonSurvived.addEventListener("click", e => {
   displayBySurvived();
 });
 
-const container = document.getElementById("content7");
-container.style.display = "flex";
-container.style.flexDirection = "row";
-container.style.flexWrap = "wrap";
-const overlay = document.getElementById('content7-overlay')
 
-const elements = [];
-const passengerData = [];
-// append basic divs
+// Append basic/default divs to graph 
+// and initialize elements and passengerData 
+// to use for formatting graph later
 function handleData(data) {
   const fields = data.map(({ fields }) => fields);
 
@@ -75,6 +81,17 @@ function handleData(data) {
     elements.push(el); // store the element
     passengerData.push(passenger); // Store the passenger
   });
+}
+
+// Helper functions for drawing the graph
+function selectButton(e, state) {
+  if (state) {
+    e.target.style.backgroundColor = "black";
+    e.target.style.color = "white";
+  } else {
+    e.target.style.backgroundColor = "white";
+    e.target.style.color = "black";
+  }
 }
 
 function displayByGender() {
@@ -108,6 +125,7 @@ function displayBySurvived() {
   });
 }
 
+// redraw all data with current selected filters
 function redraw() {
   displayByGender();
   displayByEmbarked();
@@ -115,18 +133,21 @@ function redraw() {
 }
 
 // ********** SORTING **********
+// graph display style controllers 
 let sortGender = false;
 let sortEmbarked = false;
 let sortSurvived = false;
 let sortFare = false;
 let sortId = false;
 
+// sorting button elements
 const buttonSortGender = document.getElementById("button-sort-gender");
 const buttonSortEmbarked = document.getElementById("button-sort-embarked");
 const buttonSortSurvived = document.getElementById("button-sort-survived");
 const buttonSortFare = document.getElementById("button-sort-fare");
 const buttonSortId = document.getElementById("button-sort-id");
 
+// event listeners for sorting buttons
 buttonSortGender.addEventListener("click", e => {
   sortGender = !sortGender;
   selectButton(e, sortGender);
@@ -157,6 +178,7 @@ buttonSortId.addEventListener("click", e => {
   sortbyId();
 });
 
+// Helper functions for sorting
 function sortByGender() {
   passengerData.sort((a, b) => (a.sex === "male" ? -1 : 1));
   redraw();
@@ -198,6 +220,8 @@ function sortbyId() {
   redraw();
 }
 
+// ********** Display passenger data when passenger block is clicked **********
+// Helper to display passenger data
 function displayOverlay(data) {
   overlay.style.display = 'flex'
   overlay.style.justifyContent = 'space-evenly'
@@ -213,18 +237,16 @@ function displayOverlay(data) {
   `
 }
 
-function hideOverlay() {
-  overlay.style.display = 'none'
-  // container.style.marginBottom = '100spx'
-}
+// Helper to hide overlay, needed only with mouseover & mouseout method
+// function hideOverlay() {
+//   overlay.style.display = 'none'
+// }
 
-// ********** Display passenger data when passenger block is clicked **********
-// let selectedIndex = undefined
+// Event listener on body for selecting 
+// and displaying selected passenger data
 const body = document.querySelector("body");
 body.addEventListener("click", e => {
-  // console.log(e);
   console.log(e.target.dataset.index);
-  // const container = document.getElementById('content7-overlay')
   const index = e.target.dataset.index;
   if (index !== undefined) {
     console.log(passengerData[index])
@@ -233,6 +255,11 @@ body.addEventListener("click", e => {
     elements[index].style.border = "3px solid black"
   }
 });
+
+
+// Tried using mouseover & mouseout. 
+// This works, but can be glitchy if you move the mouse too quickly or scroll.
+// Thus, I've decided to just go with the clicking approach above.
 
 // container.addEventListener('mouseover', (e) => {
 //   const index = e.target.dataset.index;
