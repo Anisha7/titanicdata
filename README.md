@@ -1,4 +1,4 @@
-# [Titanic data visualization](https://anisha7.github.io/titanicdata/)
+# [🛳 Titanic data visualization🛳 ](https://anisha7.github.io/titanicdata/)
 
 
 ## Description
@@ -24,7 +24,6 @@ You could reuse my implementation below if you like any of the visualizations.
 utils.js consists of helper functions that create sorted and unsorted bar graphs and a data table based on any data you provide. 
 
 ```
-
 createDataTable(data, id)
 ```
 This function takes in a data paramater which are key, value pairs. The keys are the row category and value is the row value. This creates a 2 column table.
