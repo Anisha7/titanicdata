@@ -40,6 +40,9 @@
 
         .dataContainer {
             margin: 40px 0;
+            padding-bottom: 60px;
+            width: 90vw;
+            border-bottom: 2px solid #3c3c3c;
         }
 
         button {
@@ -70,10 +73,6 @@
             margin: 5px 10px;
         }
 
-        .margin {
-            margin-bottom: 40px;
-        }
-
         /* keys */
         .keys {
             display: flex;
@@ -87,7 +86,7 @@
         }
 
         .keys .blue {
-            background: blue;
+            background: #1589F0;
         }
 
         .keys .pink {
@@ -96,22 +95,22 @@
 
         .keys .circle {
             border: 2px solid rgb(39, 35, 35);
-            border-radius: 50%;
+            border-radius: 25px;
             text-align: center;
             padding: 10px
         }
 
         .keys .square {
             border: 2px solid rgb(39, 35, 35);
-            padding: 10px; 
+            padding: 10px;
         }
 
         .keys .red-border {
             border: 3px solid red;
         }
 
-        .keys .yellow-border {
-            border: 3px solid yellow;
+        .keys .purple-border {
+            border: 3px solid purple;
         }
 
         .keys .green-border {
@@ -123,7 +122,7 @@
 <body style="text-align: center">
     <h1>Titanic Data Analysis</h1>
     <div style="display: flex; flex-direction: column-reverse; align-items: center; ">
-        <div class="dataContainer">
+        <div class="dataContainer" style="display: flex; flex-direction: column; align-items: center;">
             <h2>Interesting data</h2>
             <div id="content1"></div>
         </div>
@@ -140,22 +139,23 @@
             <div id="content3"></div>
         </div>
 
-        <div class="flex">
-            <div>
-                <h3>Gender difference in titanic</h2>
-                    <div id="content4"></div>
+        <div class="dataContainer">
+            <div class="flex">
+                <div>
+                    <h3>Gender difference in titanic</h2>
+                        <div id="content4"></div>
+                </div>
+                <div>
+                    <h3>Female survival in each class</h2>
+                        <div id="content5"></div>
+                </div>
+                <div>
+                    <h3>Males survival in each class</h3>
+                    <div id="content6"></div>
+                </div>
             </div>
-            <div>
-                <h3>Female survival in each class</h2>
-                    <div id="content5"></div>
-            </div>
-            <div>
-                <h3>Males survival in each class</h3>
-                <div id="content6"></div>
-            </div>
-
         </div>
-        <div class="margin">
+        <div class="dataContainer">
             <h2>Data sorting visualization</h3>
                 <div class="keys">
                     <p class="heading">Keys:</p>
@@ -164,18 +164,18 @@
                     <p class="circle">survived</p>
                     <p class="square">dead</p>
                     <p class="red-border">Queenstown</p>
-                    <p class="yellow-border">Cherbourg</p>
+                    <p class="purple-border">Cherbourg</p>
                     <p class="green-border">Southampton</p>
                 </div>
                 <div class="data-buttons">
                     <div>
-                        <h4>Filter buttons:  </h4>
+                        <h4>Filter buttons: </h4>
                         <button id="button-gender">Gender</button>
                         <button id="button-embarked">Embarked</button>
                         <button id="button-survived">Survived</button>
                     </div>
                     <div>
-                        <h4> Sort buttons:  </h4>
+                        <h4> Sort buttons: </h4>
                         <button id="button-sort-gender">Gender</button>
                         <button id="button-sort-embarked">Embarked</button>
                         <button id="button-sort-survived">Survived</button>

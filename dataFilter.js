@@ -74,6 +74,7 @@ function handleData(data) {
     el.style.margin = "1px";
     el.style.transition = "200ms"; // use trasnsition to asnimate changes
     el.style.boxSizing = "border-box";
+    el.style.cursor = "pointer";
 
     el.dataset.index = i; // <div data-index = "i">
 
@@ -97,7 +98,7 @@ function selectButton(e, state) {
 function displayByGender() {
   passengerData.forEach((obj, i) => {
     const el = elements[i];
-    const color = obj.sex === "male" ? "blue" : "pink";
+    const color = obj.sex === "male" ? "#1589F0" : "pink";
     el.style.backgroundColor = showGender ? color : "F28041";
   });
 }
@@ -109,9 +110,9 @@ function displayByEmbarked() {
     if (obj.embarked === "Q") {
       borderColor = "red";
     } else if (obj.embarked === "C") {
-      borderColor = "yellow";
+      borderColor = "purple";
     } else if (obj.embarked === "S") {
-      borderColor = "lightgreen";
+      borderColor = "green";
     }
     el.style.border = showEmbarked ? `2px solid ${borderColor}` : "none";
   });

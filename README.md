@@ -2,7 +2,7 @@
 
 
 ## Description
-This project experiments with different data visulization techniques to display [titanic data](https://www.kaggle.com/c/titanic/data). It uses bar graphs, tables, shapes, and more to better analyze the data provided.
+This project experiments with different data visulization techniques to display [titanic dataset](https://www.kaggle.com/c/titanic/data). It uses bar graphs, tables, shapes, and more to better analyze the data provided.
 
 The utils file consists of some general graph visualization functions that can be reused with different data values, given the correct format.
 
