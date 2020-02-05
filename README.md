@@ -43,6 +43,6 @@ This is similar to above but the keys in data have to be numbers for the graph t
 ## Progress evaluation
 | Expectation | Doe not meet | Meets | Exceeds |
 |:-------------|:------------------|:----------------|:-----------------|
-| **Aesthetics** | Visitors are not sure what they are looking at | ![#1589F0](https://placehold.it/15/1589F0/000000?text=+) `Viewers easily understand the facts and figures contained in teh Titanic data` | Viewers are intrgued and interested by the data presented |
-| **Completion** | Contains fewer than 7 charts | ![#1589F0](https://placehold.it/15/1589F0/000000?text=+) `Contains 7 charts including an interactive chart` | Contains charts that go beyond what was described in the homework description |
-| **Code quality** | The code is sloppy and unorganized or throws errors and warnings | Code is well organized and works without errors | ![#1589F0](https://placehold.it/15/1589F0/000000?text=+) `Shows no linter errors or warnings` |
+| **Aesthetics** | Visitors are not sure what they are looking at | ![#1E8C1D](https://placehold.it/15/1589F0/000000?text=+) `Viewers easily understand the facts and figures contained in teh Titanic data` | Viewers are intrgued and interested by the data presented |
+| **Completion** | Contains fewer than 7 charts | ![#1E8C1D](https://placehold.it/15/1589F0/000000?text=+) `Contains 7 charts including an interactive chart` | Contains charts that go beyond what was described in the homework description |
+| **Code quality** | The code is sloppy and unorganized or throws errors and warnings | Code is well organized and works without errors | ![#1E8C1D](https://placehold.it/15/1589F0/000000?text=+) `Shows no linter errors or warnings` |
