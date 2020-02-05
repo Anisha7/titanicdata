@@ -43,15 +43,79 @@
         }
 
         button {
-            padding: 10px 20px;
-            margin: 0px 5px;
+            padding: 0 20px;
+            margin: 0 5px;
             font-size: 16px;
-            border-radius: 20px;
+            border-radius: 25px;
             background-color: white;
+            height: 30px;
         }
 
         #content7 {
             margin-top: 20px;
+        }
+
+        .data-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .data-buttons div {
+            display: flex;
+        }
+
+        .data-buttons div h4 {
+            margin: 5px 10px;
+        }
+
+        .margin {
+            margin-bottom: 40px;
+        }
+
+        /* keys */
+        .keys {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .keys p {
+            padding: 10px;
+            color: rgb(39, 35, 35);
+            font-weight: bolder;
+        }
+
+        .keys .blue {
+            background: blue;
+        }
+
+        .keys .pink {
+            background-color: pink;
+        }
+
+        .keys .circle {
+            border: 2px solid rgb(39, 35, 35);
+            border-radius: 50%;
+            text-align: center;
+            padding: 10px
+        }
+
+        .keys .square {
+            border: 2px solid rgb(39, 35, 35);
+            padding: 10px; 
+        }
+
+        .keys .red-border {
+            border: 3px solid red;
+        }
+
+        .keys .yellow-border {
+            border: 3px solid yellow;
+        }
+
+        .keys .green-border {
+            border: 3px solid green;
         }
     </style>
 </head>
@@ -63,7 +127,7 @@
             <h2>Interesting data</h2>
             <div id="content1"></div>
         </div>
-        
+
         <div class="dataContainer">
             <h2>Survival and deaths of females and males</h2>
             <h3>Purple/gray refers to survived/dead passengers and circle/square refers to female/male passengers
@@ -79,39 +143,55 @@
         <div class="flex">
             <div>
                 <h3>Gender difference in titanic</h2>
-                <div id="content4"></div>
+                    <div id="content4"></div>
             </div>
             <div>
                 <h3>Female survival in each class</h2>
-                <div id="content5"></div>
+                    <div id="content5"></div>
             </div>
             <div>
                 <h3>Males survival in each class</h3>
                 <div id="content6"></div>
             </div>
-            <div>
-                <h2>Data sorting visualization</h3>
-                <p>Colors -> Blue: male, Pink: female</p>
-                <p>Shapes -> Circle: survived, Square: dead</p>
-                <p>Borders -> red: Queenstown, Yellow: Cherbourg, Green: Southampton</p>
-                <h4>Filter buttons </h4> 
-                <button id="button-gender">Gender</button>
-                <button id="button-embarked">Embarked</button>
-                <button id="button-survived">Survived</button>
-                <br/>
-                <h4> Sort buttons </h4>
-                <button id="button-sort-gender">Gender</button>
-                <button id="button-sort-embarked">Embarked</button>
-                <button id="button-sort-survived">Survived</button>
-                <button id="button-sort-fare">Fare</button>
-                <button id="button-sort-id">Passenger ID</button>
+
+        </div>
+        <div class="margin">
+            <h2>Data sorting visualization</h3>
+                <div class="keys">
+                    <p class="heading">Keys:</p>
+                    <p class="blue">male</p>
+                    <p class="pink">female</p>
+                    <p class="circle">survived</p>
+                    <p class="square">dead</p>
+                    <p class="red-border">Queenstown</p>
+                    <p class="yellow-border">Cherbourg</p>
+                    <p class="green-border">Southampton</p>
+                </div>
+                <div class="data-buttons">
+                    <div>
+                        <h4>Filter buttons:  </h4>
+                        <button id="button-gender">Gender</button>
+                        <button id="button-embarked">Embarked</button>
+                        <button id="button-survived">Survived</button>
+                    </div>
+                    <div>
+                        <h4> Sort buttons:  </h4>
+                        <button id="button-sort-gender">Gender</button>
+                        <button id="button-sort-embarked">Embarked</button>
+                        <button id="button-sort-survived">Survived</button>
+                        <button id="button-sort-fare">Fare</button>
+                        <button id="button-sort-id">Passenger ID</button>
+                    </div>
+                </div>
                 <div id="content7"></div>
-            </div>
+                <p> Click on a tile to see passenger info</p>
+                <div id="content7-overlay"></div>
         </div>
 
 
 
     </div>
+
     <script src="./utils.js"></script>
     <script src="./titanic.js"> </script>
     <script src="./dataFilter.js"> </script>

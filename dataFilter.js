@@ -21,30 +21,30 @@ const buttonEmbarked = document.getElementById("button-embarked");
 const buttonSurvived = document.getElementById("button-survived");
 
 function selectButton(e, state) {
-    if (state) {
-        e.target.style.backgroundColor = 'black'
-        e.target.style.color = 'white'
-      } else {
-        e.target.style.backgroundColor = 'white'
-        e.target.style.color = 'black'
-      }
+  if (state) {
+    e.target.style.backgroundColor = "black";
+    e.target.style.color = "white";
+  } else {
+    e.target.style.backgroundColor = "white";
+    e.target.style.color = "black";
   }
+}
 
 buttonGender.addEventListener("click", e => {
   showGender = !showGender;
-  selectButton(e, showGender)
+  selectButton(e, showGender);
   displayByGender();
 });
 
 buttonEmbarked.addEventListener("click", e => {
   showEmbarked = !showEmbarked;
-  selectButton(e, showEmbarked)
+  selectButton(e, showEmbarked);
   displayByEmbarked();
 });
 
 buttonSurvived.addEventListener("click", e => {
   showSurvived = !showSurvived;
-  selectButton(e, showSurvived)
+  selectButton(e, showSurvived);
   displayBySurvived();
 });
 
@@ -52,6 +52,7 @@ const container = document.getElementById("content7");
 container.style.display = "flex";
 container.style.flexDirection = "row";
 container.style.flexWrap = "wrap";
+const overlay = document.getElementById('content7-overlay')
 
 const elements = [];
 const passengerData = [];
@@ -59,14 +60,17 @@ const passengerData = [];
 function handleData(data) {
   const fields = data.map(({ fields }) => fields);
 
-  fields.forEach(passenger => {
+  fields.forEach((passenger, i) => {
     const el = document.createElement("div");
     el.style.width = "14px";
     el.style.height = "14px";
-    el.style.backgroundColor = "black";
+    el.style.backgroundColor = "#F28041";
     el.style.margin = "1px";
     el.style.transition = "200ms"; // use trasnsition to asnimate changes
     el.style.boxSizing = "border-box";
+
+    el.dataset.index = i; // <div data-index = "i">
+
     container.appendChild(el);
     elements.push(el); // store the element
     passengerData.push(passenger); // Store the passenger
@@ -77,20 +81,20 @@ function displayByGender() {
   passengerData.forEach((obj, i) => {
     const el = elements[i];
     const color = obj.sex === "male" ? "blue" : "pink";
-    el.style.backgroundColor = showGender ? color : "black";
+    el.style.backgroundColor = showGender ? color : "F28041";
   });
 }
 
 function displayByEmbarked() {
   passengerData.forEach((obj, i) => {
     const el = elements[i];
-    let borderColor = "black";
+    let borderColor = "darkgray";
     if (obj.embarked === "Q") {
-        borderColor = "red"
+      borderColor = "red";
     } else if (obj.embarked === "C") {
-        borderColor = "yellow"
+      borderColor = "yellow";
     } else if (obj.embarked === "S") {
-        borderColor = "lightgreen"
+      borderColor = "lightgreen";
     }
     el.style.border = showEmbarked ? `2px solid ${borderColor}` : "none";
   });
@@ -105,9 +109,9 @@ function displayBySurvived() {
 }
 
 function redraw() {
-    displayByGender()
-    displayByEmbarked()
-    displayBySurvived() 
+  displayByGender();
+  displayByEmbarked();
+  displayBySurvived();
 }
 
 // ********** SORTING **********
@@ -124,72 +128,121 @@ const buttonSortFare = document.getElementById("button-sort-fare");
 const buttonSortId = document.getElementById("button-sort-id");
 
 buttonSortGender.addEventListener("click", e => {
-    sortGender = !sortGender;
-    selectButton(e, sortGender)
-    sortByGender();
+  sortGender = !sortGender;
+  selectButton(e, sortGender);
+  sortByGender();
 });
 
 buttonSortEmbarked.addEventListener("click", e => {
-    sortEmbarked = !sortEmbarked;
-    selectButton(e, sortEmbarked)
-    sortByEmbarked();
+  sortEmbarked = !sortEmbarked;
+  selectButton(e, sortEmbarked);
+  sortByEmbarked();
 });
 
 buttonSortSurvived.addEventListener("click", e => {
-    sortSurvived = !sortSurvived;
-    selectButton(e, sortSurvived)
-    sortbySurvived();
+  sortSurvived = !sortSurvived;
+  selectButton(e, sortSurvived);
+  sortbySurvived();
 });
 
 buttonSortFare.addEventListener("click", e => {
-    sortFare = !sortFare;
-    selectButton(e, sortFare)
-    sortbyFare();
+  sortFare = !sortFare;
+  selectButton(e, sortFare);
+  sortbyFare();
 });
 
 buttonSortId.addEventListener("click", e => {
-    sortId = !sortId;
-    selectButton(e, sortId)
-    sortbyId();
+  sortId = !sortId;
+  selectButton(e, sortId);
+  sortbyId();
 });
 
 function sortByGender() {
-    passengerData.sort((a, b) => a.sex === "male" ? -1 : 1)
-    redraw()
+  passengerData.sort((a, b) => (a.sex === "male" ? -1 : 1));
+  redraw();
 }
 
 function sortByEmbarked() {
-    passengerData.sort((a, b) => {
-        const x = a.embarked
-        const y = b.embarked
-        if (x === undefined || y === undefined) {
-          return 0
-        }
-    
-        if (x < y) {
-          return -1;
-        }
-        if (x > y) {
-          return 1;
-        }
-      
-        // names must be equal
-        return 0;
-      })
-    redraw()
+  passengerData.sort((a, b) => {
+    const x = a.embarked;
+    const y = b.embarked;
+    if (x === undefined || y === undefined) {
+      return 0;
+    }
+
+    if (x < y) {
+      return -1;
+    }
+    if (x > y) {
+      return 1;
+    }
+
+    // names must be equal
+    return 0;
+  });
+  redraw();
 }
 
 function sortbySurvived() {
-    passengerData.sort((a, b) => a.survived === "Yes" ? -1 : 1)
-    redraw()
+  passengerData.sort((a, b) => (a.survived === "Yes" ? -1 : 1));
+  redraw();
 }
 
 function sortbyFare() {
-    passengerData.sort((a, b) => b.fare - a.fare)
-    redraw()
+  passengerData.sort((a, b) => b.fare - a.fare);
+  redraw();
 }
 
 function sortbyId() {
-    passengerData.sort((a, b) => b.passengerid - a.passengerid)
-    redraw()
+  passengerData.sort((a, b) => b.passengerid - a.passengerid);
+  redraw();
 }
+
+function displayOverlay(data) {
+  overlay.style.display = 'flex'
+  overlay.style.justifyContent = 'space-evenly'
+  overlay.style.alignItems = 'baseline'
+  overlay.innerHTML = `
+  <h4> Selected passenger: </h4>
+  <h4> ${data.name} </h4>
+  <p> sex: ${data.sex} </p>
+  <p> embarked: ${data.embarked} </p>
+  <p> fare: ${data.fare} </p>
+  <p> survived: ${data.survived} </p>
+  <p> pclass: ${data.pclass} </p>
+  `
+}
+
+function hideOverlay() {
+  overlay.style.display = 'none'
+  // container.style.marginBottom = '100spx'
+}
+
+// ********** Display passenger data when passenger block is clicked **********
+// let selectedIndex = undefined
+const body = document.querySelector("body");
+body.addEventListener("click", e => {
+  // console.log(e);
+  console.log(e.target.dataset.index);
+  // const container = document.getElementById('content7-overlay')
+  const index = e.target.dataset.index;
+  if (index !== undefined) {
+    console.log(passengerData[index])
+    displayOverlay(passengerData[index])
+    redraw()
+    elements[index].style.border = "3px solid black"
+  }
+});
+
+// container.addEventListener('mouseover', (e) => {
+//   const index = e.target.dataset.index;
+//   if (index !== undefined) {
+//     displayOverlay(passengerData[index])
+//     redraw()
+//     elements[index].style.border = "3px solid black"
+//   }
+// })
+
+// container.addEventListener('mouseout', (e) => {
+//   hideOverlay()
+// })
