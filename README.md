@@ -14,7 +14,7 @@ The utils file consists of some general graph visualization functions that can b
 
 
 ## Background Information
-This titanic data set comes from Kaggle's Machine Learning challenge. The sinking of titanic is one of the most infamous shipwrecks in history. The data spikes our curiosity with regards to gender distributions, children on board, survival ratios, and more. Thus, this project focuses on 
+This titanic data set comes from Kaggle's Machine Learning challenge. The sinking of titanic is one of the most infamous shipwrecks in history. The data spikes our curiosity with regards to gender distributions, children on board, survival ratios, and more. 
 
 ## Implementation
 You could reuse my implementation below if you like any of the visualizations. 
